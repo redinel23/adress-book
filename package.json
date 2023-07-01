@@ -8,7 +8,9 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "vue": "^3.2.13"
+    "axios": "^1.4.0",
+    "vue": "^3.2.13",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@types/jest": "^27.0.1",
