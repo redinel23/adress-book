@@ -5,10 +5,12 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "test": "jest app.test.js"
   },
   "dependencies": {
     "axios": "^1.4.0",
+    "axios-mock-adapter": "^1.21.5",
     "lodash": "^4.17.21",
     "vue": "^3.2.13",
     "vue-router": "^4.2.2",
@@ -36,8 +38,5 @@
     "last 2 versions",
     "not dead",
     "not ie 11"
-  ],
-  "jest": {
-    "preset": "@vue/cli-plugin-unit-jest/presets/typescript"
-  }
+  ]
 }

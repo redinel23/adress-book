@@ -102,6 +102,7 @@ function useCancellationToken() {
 
     const cancelRequest = () => {
         if (cancel) {
+            console.log('aa')
             cancel();
         }
     };
