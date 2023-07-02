@@ -2,7 +2,7 @@
     <div class="px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div>
-                <label for="search" class="block text-sm font-medium leading-6 text-gray-900">Search For Companies</label>
+                <label for="search" class="block text-sm font-medium leading-6 text-gray-900">Search for Companies by name</label>
                 <div class="relative mt-2 flex items-center">
                     <input type="text"
                            v-model="searchTerm"
@@ -56,7 +56,7 @@
 <script lang="ts">
 import { debounce } from 'lodash';
 import { useStore } from "vuex";
-import {computed, defineComponent, ref, watch} from "vue";
+import {computed, defineComponent, onBeforeUnmount, ref} from "vue";
 
 export default  defineComponent({
     name:'Index',
@@ -77,6 +77,14 @@ export default  defineComponent({
             return store.state.addressBook.searchResults;
         });
 
+        // Cancellation token setup
+        const { cancel, token } = useCancellationToken();
+
+        // Cancel API request on component unmount or destroy
+        onBeforeUnmount(() => {
+            cancel();
+        })
+
         return {
             searchTerm,
             searchResults,
@@ -84,4 +92,21 @@ export default  defineComponent({
         }
     }
 })
+function useCancellationToken() {
+    let cancel: (() => void) | undefined;
+    const token = new AbortController();
+
+    const setCancel = (fn: () => void) => {
+        cancel = fn;
+    };
+
+    const cancelRequest = () => {
+        if (cancel) {
+            cancel();
+        }
+    };
+
+    return { cancel: cancelRequest, token, setCancel };
+}
+
 </script>
