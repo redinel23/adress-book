@@ -12,6 +12,7 @@
     "lodash": "^4.17.21",
     "vue": "^3.2.13",
     "vue-router": "^4.2.2",
+    "vue3-jest": "^27.0.0-alpha.1",
     "vuex": "^4.1.0"
   },
   "devDependencies": {
